@@ -1,4 +1,4 @@
-package web.modelсar;
+package web.mоdel;
 
 
 import java.util.Objects;
@@ -29,8 +29,8 @@ public class Car {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModel(String modelCar) {
+        this.model = modelCar;
     }
 
     public String getSeries() {
@@ -40,7 +40,14 @@ public class Car {
     public void setSeries(String series) {
         this.series = series;
     }
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", mоdel='" + model + '\'' +
+                ", series='" + series + '\'' +
+                '}';
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,4 +60,6 @@ public class Car {
     public int hashCode() {
         return Objects.hash(id, model, series);
     }
+
+
 }

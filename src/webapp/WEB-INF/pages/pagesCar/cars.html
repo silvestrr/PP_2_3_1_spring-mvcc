@@ -8,7 +8,7 @@
 <div>
     <h1>Cars</h1>
     <table>
-        <tr><th>Model</th><th>Cars List</th></tr>
+        <tr><th>Model Car</th><th>Cars List</th></tr>
         <th:block th:each="car : ${carList}">
             <tr><td><p th:text="${car.getModel()}" /></td>
                 <td><p th:text="${car.getSeries()}" /></td>
