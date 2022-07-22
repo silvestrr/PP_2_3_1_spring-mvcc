@@ -1,4 +1,4 @@
-package web.Model;
+package web.modelсar;
 
 
 import java.util.Objects;
@@ -10,19 +10,6 @@ public class Car {
     private String model;
 
     private String series;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(series, car.series);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, model, series);
-    }
 
     public Car(int id, String model, String series) {
         this.id = id;
@@ -52,5 +39,18 @@ public class Car {
 
     public void setSeries(String series) {
         this.series = series;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(series, car.series);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series);
     }
 }

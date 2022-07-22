@@ -1,17 +1,17 @@
 package web.service;
 
-import web.Model.Car;
+import web.modelсar.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarServiceImpl implements CarService{
 
-    private List<Car> cars = new ArrayList<Car>();
+    private List<Car> cars = new ArrayList<>();
 
 
     @Override
-    public List<Car> getCarList(int count) {
+    public List<Car> getCars(int count) {
         return cars.stream().limit(count).toList();
     }
     public CarServiceImpl() {
