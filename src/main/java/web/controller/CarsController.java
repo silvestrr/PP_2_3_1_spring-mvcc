@@ -19,7 +19,8 @@ public class CarsController {
 
     @GetMapping("/cars")
     public String ListOfСars(@RequestParam(required = false) Integer count, Model model) {
-        List<Car> car = carService.getCarsByModelAndSeries(count == null ? 0 : count);
+        List<Car> car = carService.saveCar();
+        car = carService.getSpecifiedByNumberOfCars(count == null ? 0 : count);
         model.addAttribute(car);
         return "pagesCar/cars";
     }
