@@ -15,6 +15,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -26,6 +28,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("web")
+@Component
 public class PersistenceJPAConfig {
     @Autowired
     private Environment env;

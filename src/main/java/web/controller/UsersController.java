@@ -21,20 +21,20 @@ public class UsersController {
         return "pagesUser/addUser";
     }
 
-//    @GetMapping("/")
-//    public String allUsers(Model model) {
-//        model.addAttribute("users",userService.getAllUsers());
-//        return "pagesUser/allUsers";
-//    }
-//    @GetMapping("/{id}")
-//    public String getUserById(@PathVariable("id") int id,Model model) {
-//        model.addAttribute("user",userService.getUser(id));
-//        return "pagesUser/userById";
-//    }
-//    @DeleteMapping("/{id}")
-//    public String deleteUser(@PathVariable(name = "id") int id) {
-//        User user = userService.readUserById(id);
-//        userService.removeUser(id);
-//        return "redirect:/";
-//    }
+    @GetMapping("/")
+    public String allUsers(Model model) {
+        model.addAttribute("users",userService.getAllUsers());
+        return "pagesUser/allUsers";
+    }
+    @GetMapping("/{id}")
+    public String getUserById(@PathVariable("id") int id,Model model) {
+        model.addAttribute("user",userService.getUser(id));
+        return "pagesUser/userById";
+    }
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable(name = "id") int id) {
+        User user = userService.readUserById(id);
+        userService.removeUser(id);
+        return "redirect:/";
+    }
 }
