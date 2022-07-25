@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 @Configuration
-@SpringBootApplication(exclude = {PersistenceJPAConfig.class})
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("web")
