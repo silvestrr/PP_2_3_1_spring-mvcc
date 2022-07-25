@@ -9,36 +9,41 @@ import web.mоdelUser.User;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDaoImpl userDao;
+    private UserDaoImpl userDao;
     @Autowired
     public UserServiceImpl(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 
+    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
-
+    @Transactional
     @Override
     public void createUser(User user) {
         userDao.addUser(user);
     }
+    @Transactional
     @Override
-    public User removeUser(int id) {
-        return userDao.removeUser(id);
+    public void removeUser(int id) {
+        userDao.removeUser(id);
     }
+    @Transactional
     @Override
     public User readUserById(int userId) {
         return userDao.findUserById(userId);
     }
+    @Transactional
     @Override
     public User getUser(int id) {
         return userDao.getUser(id);
     }
+    @Transactional
     @Override
     public void editUser(int id, String name, String lastname) {
         userDao.editUser(id,name,lastname);

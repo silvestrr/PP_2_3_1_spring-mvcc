@@ -4,7 +4,7 @@ package web.mоdelUser;
 import javax.persistence.*;
 import java.util.Objects;
 @Entity
-@Table(name = "table_name")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,20 +14,15 @@ public class User {
     @Column(name = "lastname")
     private String lastname;
 
+    public User() {
 
-    public User(int id, String name, String lastname) {
-        this.id = id;
+    }
+    public User(String name, String lastname) {
         this.name = name;
         this.lastname = lastname;
     }
 
-    public User(String name, String lastname) {
 
-    }
-
-    public User() {
-
-    }
 
     public int getId() {
         return id;

@@ -2,6 +2,7 @@ package web.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import web.mоdelUser.User;
 
@@ -11,8 +12,7 @@ import java.util.List;
 
 
 
-@Component
-@Transactional
+@Repository
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager em;
@@ -33,8 +33,8 @@ public class UserDaoImpl implements UserDao {
         return em.createQuery("select u from User u", User.class).getResultList();
     }
     @Override
-    public User removeUser(int id) {
-        return em.find(User.class, id);
+    public void removeUser(int id) {
+        em.remove(getUser(id));
 
     }
     @Override

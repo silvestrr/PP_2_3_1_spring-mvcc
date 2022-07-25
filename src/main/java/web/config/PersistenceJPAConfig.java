@@ -3,10 +3,7 @@ package web.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 
@@ -19,23 +16,29 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 import javax.sql.DataSource;
+import java.util.Objects;
 import java.util.Properties;
+
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("web")
-@Component
 public class PersistenceJPAConfig {
-    @Autowired
-    private Environment env;
+
+    private final Environment env;
+    public PersistenceJPAConfig(Environment env) {
+        this.env = env;
+    }
+
 
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("db.driver"));
+        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("db.driver")));
         dataSource.setUrl(env.getProperty("db.url"));
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
@@ -51,7 +54,7 @@ public class PersistenceJPAConfig {
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
         entityManagerFactory.setJpaProperties(props);
-        entityManagerFactory.setPackagesToScan(new String[]{"web/model"});
+        entityManagerFactory.setPackagesToScan("web.model");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
         return entityManagerFactory;
